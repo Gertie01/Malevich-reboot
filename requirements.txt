@@ -1,0 +1,6 @@
+flask
+flask-cors
+rudalle==1.1.4
+torch
+transformers
+pillow
