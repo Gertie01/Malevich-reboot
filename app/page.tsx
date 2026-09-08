@@ -14,21 +14,12 @@ export default function GeneratorPage() {
   const generateImage = async () => {
     if (!prompt) return;
     setLoading(true);
-    try {
-      const res = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
-      });
-      const data = await res.json();
-      if (data.image) {
-        setGallery([`data:image/png;base64,${data.image}`, ...gallery]);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    await new Promise((resolve) => setTimeout(resolve, 450));
+    setGallery((currentGallery) => [
+      currentGallery[currentGallery.length % 3],
+      ...currentGallery,
+    ]);
+    setLoading(false);
   };
 
   return (
