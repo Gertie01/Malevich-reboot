@@ -5,7 +5,11 @@ import { ImagePlus, Loader2, Play } from 'lucide-react';
 export default function GeneratorPage() {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
-  const [gallery, setGallery] = useState<string[]>([]);
+  const [gallery, setGallery] = useState<string[]>([
+    '/results/malevich-astronaut.png',
+    '/results/malevich-city.png',
+    '/results/malevich-garden.png',
+  ]);
 
   const generateImage = async () => {
     if (!prompt) return;

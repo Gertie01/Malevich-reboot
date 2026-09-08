@@ -1,6 +1,6 @@
 flask
 flask-cors
-rudalle==1.1.4
+rudalle==1.1.3
 torch
 transformers
 pillow
