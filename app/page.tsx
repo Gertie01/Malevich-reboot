@@ -10,21 +10,25 @@ export default function GeneratorPage() {
     '/results/malevich-city.png',
     '/results/malevich-garden.png',
   ]);
-  const realResults = [
-    '/results/malevich-orbit.png',
-    '/results/malevich-portrait.png',
-    '/results/malevich-sea.png',
-  ];
 
   const generateImage = async () => {
     if (!prompt) return;
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 450));
-    setGallery((currentGallery) => [
-      realResults[currentGallery.length % realResults.length],
-      ...currentGallery,
-    ]);
-    setLoading(false);
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await res.json();
+      if (data.image) {
+        setGallery([`data:image/png;base64,${data.image}`, ...gallery]);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
