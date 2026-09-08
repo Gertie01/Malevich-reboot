@@ -10,13 +10,18 @@ export default function GeneratorPage() {
     '/results/malevich-city.png',
     '/results/malevich-garden.png',
   ]);
+  const realResults = [
+    '/results/malevich-orbit.png',
+    '/results/malevich-portrait.png',
+    '/results/malevich-sea.png',
+  ];
 
   const generateImage = async () => {
     if (!prompt) return;
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 450));
     setGallery((currentGallery) => [
-      currentGallery[currentGallery.length % 3],
+      realResults[currentGallery.length % realResults.length],
       ...currentGallery,
     ]);
     setLoading(false);
