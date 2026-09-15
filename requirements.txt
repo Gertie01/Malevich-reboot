@@ -1,6 +1,6 @@
 flask
 flask-cors
-rudalle==1.1.4
+huggingface_hub
 torch
 transformers
 pillow
