@@ -19,7 +19,7 @@ def load_models():
     global model, tokenizer, vae
     if model is None:
         # Malevich is the XL model (1.3B)
-        model = get_rudalle_model('ai-forever/rudalle-Malevich', pretrained=True, fp16=(device == 'cuda'), device=device)
+        model = get_rudalle_model('https://huggingface.co/ai-forever/rudalle-Malevich', pretrained=True, fp16=(device == 'cuda'), device=device)
         tokenizer = get_tokenizer()
         vae = get_vae(dalle_16=True).to(device)
 
