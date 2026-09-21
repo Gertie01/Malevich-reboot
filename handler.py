@@ -1,9 +1,9 @@
-import runpod
++ import runpod
 
-def handler(event):
-    # your logic
-    return {"result": "success"}
+  def handler(event):
+      # your logic here
+      return {"status": "ok"}
 
-runpod.serverless.start({
-    "handler": handler
-})
++ runpod.serverless.start({
++     "handler": handler
++ })
