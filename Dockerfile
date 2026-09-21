@@ -5,11 +5,13 @@ RUN apk add --no-cache libc6-compat
 
 # ---------- Install JS dependencies ----------
 FROM base AS deps
-COPY package.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
 # ---------- Build Next.js ----------
 FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
@@ -39,4 +41,5 @@ USER nextjs
 
 ENV PORT=8080
 EXPOSE 8080
+
 CMD ["node", "server.js"]
